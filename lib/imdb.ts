@@ -9,7 +9,7 @@ export interface MovieData {
 
 export async function searchMovies(query: string): Promise<MovieData[]> {
   if (!process.env.OMDB_API_KEY) {
-    throw new Error("Please define OMDB_API_KEY in .env.local");
+    throw new Error("Please define API_KEY");
   }
 
   const url = `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&s=${encodeURIComponent(
@@ -35,7 +35,7 @@ export async function searchMovies(query: string): Promise<MovieData[]> {
 
 export async function getMovieDetails(imdbId: string): Promise<MovieData | null> {
   if (!process.env.OMDB_API_KEY) {
-    throw new Error("Please define OMDB_API_KEY in .env.local");
+    throw new Error("Please define API_KEY ");
   }
 
   const url = `https://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&i=${imdbId}&plot=full`;
