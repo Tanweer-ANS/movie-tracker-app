@@ -1,8 +1,15 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## ENV Files
+MONGODB_URI=your_mongoDB_url
+
+TMDB_API_KEY=your_tmdb_key
+
+## Clerk Auth 
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publichable_key
+
+CLERK_SECRET_KEY=your_clerk_secret_key
 
 ## Getting Started
-
-First, run the development server:
 
 ```bash
 npm run dev
