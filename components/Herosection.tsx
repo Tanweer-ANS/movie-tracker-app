@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { InputWithButton } from "./InputWithButton";
 
+
 export const HeroSection = () => {
   const router = useRouter() 
   

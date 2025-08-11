@@ -20,7 +20,7 @@ export default function Home() {
       "icon_url": ""
     },
     {
-      "title": "Analysis your movie genera",
+      "title": "Analysis your movie genre",
       "description": "Save your favourites easily and always have something to watch.",
       "icon_url": ""
     },

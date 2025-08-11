@@ -55,3 +55,18 @@ export async function getMovieDetails(imdbId: string): Promise<MovieData | null>
     genres: data.Genre.split(",").map((g: string) => g.trim()),
   };
 }
+
+
+// 🔹 Search movies by genre (filtered from OMDb search)
+export async function searchMoviesByGenre(keyword: string, genre: string): Promise<MovieData[]> {
+  const movies = await searchMovies(keyword);
+
+  // Fetch details for each movie to get genre info
+  const detailedMovies = await Promise.all(
+    movies.map((m) => getMovieDetails(m.imdbId))
+  );
+
+  return detailedMovies
+    .filter((movie): movie is MovieData => !!movie) // Remove nulls
+    .filter((movie) => movie.genres.some((g) => g.toLowerCase() === genre.toLowerCase()));
+}
