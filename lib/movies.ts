@@ -13,7 +13,7 @@ export interface MovieData {
   genres: string[];
 }
 
-interface TMDbMovie {
+export interface TMDbMovie {
   id: number;
   title: string;
   release_date: string;
@@ -108,4 +108,39 @@ export async function getMoviesByGenreWithDetails(genreId: number, page = 1): Pr
   );
 
   return detailedMovies.filter((m): m is MovieData => m !== null);
+}
+
+//to get movies by name using OMDb API (not working currently)
+export async function getMoviesByName(name: string) {
+  const apiKey = process.env.OMDB_API_KEY;
+  const res = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(name)}`);
+  const data = await res.json();
+  return data.Search || [];
+}
+
+
+
+//to search movies by name using TMDb API
+
+export async function searchMoviesByName(query: string, page = 1): Promise<TMDbMovie[]> {
+  if (!TMDB_API_KEY) throw new Error("TMDB_API_KEY is not set in .env.local");
+
+  const url = `${TMDB_BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&language=en-US&query=${encodeURIComponent(
+    query
+  )}&include_adult=false&page=${page}`;
+
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`TMDb search failed: ${res.status} ${res.statusText}`);
+  }
+  const data = await res.json();
+  return data.results ?? [];
+}
+
+/**
+ * Helper to build TMDb poster URL. Returns null if path is falsy.
+ */
+export function getTMDBImageUrl(path?: string | null, size = "w500"): string | null {
+  if (!path) return null;
+  return `https://image.tmdb.org/t/p/${size}${path}`;
 }

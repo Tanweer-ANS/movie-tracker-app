@@ -1,5 +1,6 @@
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { SearchBar } from "@/components/SearchBar";
 import {
   ClerkProvider,
   SignInButton,
@@ -16,6 +17,8 @@ export default function Header() {
       >
         Movie Mirror
       </Link>
+
+      <SearchBar/>
       
       <div className="flex gap-2 sm:gap-3 lg:gap-4 justify-center items-center flex-shrink-0">
         <SignedOut>

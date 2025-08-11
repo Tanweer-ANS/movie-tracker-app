@@ -21,6 +21,8 @@ export async function GET() {
     const genres = await getGenres();
     return NextResponse.json({ genres }); // <-- wrap in object
   } catch (error) {
+    console.log("Error fetching genres:", error);
+    
     return NextResponse.json({ error: "Failed to fetch genres" }, { status: 500 });
   }
 
