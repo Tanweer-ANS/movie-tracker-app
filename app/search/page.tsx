@@ -1,4 +1,5 @@
-// app/search/page.tsx
+// app/search/page.tsx'
+'use client'
 import React from "react";
 import { searchMoviesByName, getTMDBImageUrl, TMDbMovie } from "@/lib/movies";
 

@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
@@ -14,19 +15,35 @@ export function InputWithButton() {
   const [loading, setLoading] = useState(false);
 
    // Fetching genres from API
-  useEffect(() => {
+useEffect(() => {
   const fetchGenres = async () => {
     try {
       const res = await fetch("/api/genres");
+      console.log(res)
+
+      // Check if response is OK (status 200–299)
+      if (!res.ok) {
+        throw new Error(`Failed to fetch genres: ${res.status} ${res.statusText}`);
+      }
+
       const data = await res.json();
-      setGenres(Array.isArray(data.genres) ? data.genres : []);
+
+      // Validate the structure of the response
+      if (Array.isArray(data.genres)) {
+        setGenres(data.genres);
+      } else {
+        console.warn("Unexpected response structure:", data);
+        setGenres([]);
+      }
     } catch (err) {
       console.error("Error fetching genres:", err);
       setGenres([]);
     }
   };
+
   fetchGenres();
 }, []);
+
 
   const handleSearch = () => {
     if (selectedGenre) {
