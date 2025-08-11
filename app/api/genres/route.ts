@@ -17,12 +17,12 @@ export async function GET() {
   //   return NextResponse.json({ error: "Failed to fetch genres" }, { status: 500 });
   // }
 
-   try {
+  try {
     const genres = await getGenres();
+    console.log(genres)
     return NextResponse.json({ genres }); // <-- wrap in object
   } catch (error) {
     console.log("Error fetching genres:", error);
-    
     return NextResponse.json({ error: "Failed to fetch genres" }, { status: 500 });
   }
 

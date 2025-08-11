@@ -1,7 +1,7 @@
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const OMDB_API_KEY = process.env.OMDB_API_KEY;
 
-const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+const TMDB_BASE_URL = "https://api.themoviedb.org/3/discover/movie";
 const OMDB_BASE_URL = "https://www.omdbapi.com/";
 
 export interface MovieData {
@@ -59,6 +59,7 @@ async function fetchFromOMDb<T>(params: Record<string, string | number>): Promis
 // Getting list of genres from TMDb
 export async function getGenres(): Promise<TMDbGenre[]> {
   const data = await fetchFromTMDb<{ genres: TMDbGenre[] }>("/genre/movie/list");
+  console.log(data)
   return data.genres;
 }
 
