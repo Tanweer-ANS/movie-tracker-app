@@ -1,6 +1,6 @@
 'use client'
 import { notFound } from "next/navigation";
-import { getTMDBImageUrl } from "@/lib/movies";
+import { buildTMDbPosterUrl } from "@/lib/movies";
 
 async function getMoviesByGenre(id: string) {
   const res = await fetch(
