@@ -1,3 +1,4 @@
+'use client'
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { SearchBar } from "@/components/SearchBar";
@@ -9,6 +10,8 @@ import {
 } from '@clerk/nextjs'
 
 export default function Header() {
+
+
   return (
     <header className="flex justify-between items-center p-3 sm:p-4 lg:p-6 gap-2 sm:gap-4 h-14 sm:h-16 lg:h-20 bg-black w-full">
       <Link 

@@ -23,7 +23,8 @@ export async function GET() {
     return NextResponse.json({ genres }); // <-- wrap in object
   } catch (error) {
     console.log("Error fetching genres:", error);
-    return NextResponse.json({ error: "Failed to fetch genres" }, { status: 500 });
+    // return NextResponse.json({ error: "Failed to fetch genres" }, { status: 500 });
+    return NextResponse.json({ error: String(error) }, { status: 500 });
   }
 
   // try {

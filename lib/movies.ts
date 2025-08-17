@@ -57,11 +57,45 @@ async function fetchFromOMDb<T>(params: Record<string, string | number>): Promis
 }
 
 // Getting list of genres from TMDb
+// export async function getGenres(): Promise<TMDbGenre[]> {
+//   const data = await fetchFromTMDb<{ genres: TMDbGenre[] }>("/genre/movie/list");
+//   console.log(data)
+//   return data.genres;
+// }
+
+// export async function getGenres(): Promise<TMDbGenre[]> {
+//   const TMDB_API_KEY = process.env.TMDB_API_KEY;
+//   const res = await fetch(
+//     `https://api.themoviedb.org/3/genre/movie/list?api_key=${TMDB_API_KEY}&language=en-US`,
+//     { cache: "no-store" }
+//   );
+
+//   if (!res.ok) throw new Error("Failed to fetch genres from TMDB");
+//   const data = await res.json();
+//   return data.genres;
+// }
+
+//Using axios to get genres from TMDb
+import axios from "axios";
+
 export async function getGenres(): Promise<TMDbGenre[]> {
-  const data = await fetchFromTMDb<{ genres: TMDbGenre[] }>("/genre/movie/list");
-  console.log(data)
+  const { data } = await axios.get(
+    `https://api.themoviedb.org/3/genre/movie/list`,
+    {
+      params: {
+        api_key: process.env.TMDB_API_KEY,
+        language: "en-US",
+      },
+    }
+  );
   return data.genres;
 }
+
+
+
+
+
+
 
 // Getting movies by genre (from TMDb)
 export async function getMoviesByGenre(genreId: number, page = 1): Promise<TMDbMovie[]> {

@@ -33,7 +33,7 @@ export function SearchBar({ onSearch, placeholder = "Search movies...", defaultV
           placeholder={placeholder}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="pl-10 pr-10"
+          className="pl-10 pr-10 text-white"
         />
         {query && (
           <Button
