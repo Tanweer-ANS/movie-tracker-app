@@ -15,8 +15,8 @@ export function InputWithButton() {
   const [loading, setLoading] = useState(false);
 
    // Fetching genres from API
-useEffect(() => {
-  const fetchGenres = async () => {
+  useEffect(() => {
+    const fetchGenres = async () => {
     try {
       const res = await fetch("/api/genres");
       console.log(res)
